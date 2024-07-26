@@ -1,0 +1,12 @@
+####Não é um dos contextos dial-plan padrão encontrados no arquivo extensions.conf.
+####De qualquer forma, aqui está a aparência do meu no arquivo extensions.conf:
+
+####Ele usa a extensão *43 e anuncia uma data/hora local antes de anunciar o teste de eco.
+
+exten=>*43,1,Noop(UnixTime)
+exten=>*43,n,SayUnixTime(,EST5EDT)
+exten=>*43,n,NoOp(demo-echotest)
+exten=>*43,n,Playback(demo-echotest)
+exten=>*43,n(echo),Echo()
+exten=>*43,n,Playback(demo-echodone)
+exten=>*43,n,Hangup()
